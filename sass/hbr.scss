@@ -1,0 +1,75 @@
+@import "compass/css3";
+div, p {
+  color: #black;
+  font-family: BadaBoom BB, verdana, helvetica, arial, sans-serif;
+}
+
+.logo {
+  background: url(../images/logo.png) no-repeat center;
+}
+
+.technique {
+  .x-carousel-item {
+    text-align: center;
+    h1 {
+      font-size: 2em;
+      line-height: 2em;
+    }
+    p {
+      font-size: 1.4em;
+      img {
+        margin: 0 1em 0 0;
+        vertical-align: middle;
+      }
+    }
+  }
+}
+.health-panel {
+  .health {
+    background-size: 35%;
+  }
+  .health_6 {
+    background: url(../images/health_6.png) center no-repeat;
+  }
+  .health_5 {
+    background: url(../images/health_5.png) center no-repeat;
+  }
+  .health_4 {
+    background: url(../images/health_4.png) center no-repeat;
+  }
+  .health_3 {
+    background: url(../images/health_3.png) center no-repeat;
+  }
+  .health_2 {
+    background: url(../images/health_2.png) center no-repeat;
+  }
+  .health_1 {
+    background: url(../images/health_1.png) center no-repeat;
+  }
+  .health_0 {
+    background: url(../images/health_0.png) center no-repeat;
+  }
+}
+.charge-panel {
+  .charge {
+    background-size: 35%;
+  }
+
+  .charge_3 {
+    background: url(../images/charge_3.png) center no-repeat;
+  }
+  .charge_2 {
+    background: url(../images/charge_2.png) center no-repeat;
+  }
+  .charge_1 {
+    background: url(../images/charge_1.png) center no-repeat;
+  }
+  .charge_0 {
+    background: url(../images/charge_0.png) center no-repeat;
+  }
+}
+
+.x-fullscreen {
+  background: url(../images/background.png) center no-repeat;
+  background-size: 100%;
+}
