@@ -1,11 +1,9 @@
 fs     = require 'fs'
 {exec} = require 'child_process'
 
+appname = 'hbr'
+
 files = [
-  'views/Technique'
-  'views/Charge'
-  'views/Health'
-  'views/Screen'
   'app'
 ]
 
@@ -17,14 +15,14 @@ task 'build', 'Build single application file from source files', ->
       appContents[index] = fileContents
       process() if --remaining is 0
   process = ->
-    fs.writeFile 'js/bajjutsu.coffee', appContents.join('\n\n'), 'utf8', (err) ->
+    fs.writeFile "js/#{appname}.coffee", appContents.join('\n\n'), 'utf8', (err) ->
       throw err if err
-      exec 'coffee --compile js/bajjutsu.coffee', (err, stdout, stderr) ->
+      exec "coffee -c -o www/js js/#{appname}.coffee", (err, stdout, stderr) ->
         throw err if err
         console.log stdout + stderr
-        exec 'uglifyjs -o js/bajjutsu.min.js js/bajjutsu.js', (err, stdout, stderr) ->
+        exec "uglifyjs -o www/js/#{appname}.min.js www/js/#{appname}.js", (err, stdout, stderr) ->
           throw err if err
           console.log stdout + stderr
           console.log 'Done.'
-        fs.unlink 'js/bajjutsu.coffee', (err) ->
+        fs.unlink "js/#{appname}.coffee", (err) ->
           throw err if err
