@@ -1,0 +1,25 @@
+/* line 3, ../../sass/hbr.scss */
+.hbr-word {
+  background: white;
+  border: 1px solid #ddd;
+}
+
+/* line 8, ../../sass/hbr.scss */
+.dice {
+  text-align: center;
+}
+/* line 10, ../../sass/hbr.scss */
+.dice li {
+  background: white;
+  border: 1px solid #555;
+  display: inline-block;
+  padding: 0.5em 1em;
+}
+
+/* line 17, ../../sass/hbr.scss */
+.word-count {
+  font-weight: bold;
+  font-size: 1.6em;
+  text-align: center;
+  padding: 1em;
+}

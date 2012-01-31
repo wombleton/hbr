@@ -5,6 +5,12 @@ appname = 'hbr'
 
 files = [
   'app'
+  'views/players'
+  'views/roller'
+  'views/word-count'
+  'views/story'
+  'views/word'
+  'views/main'
 ]
 
 task 'build', 'Build single application file from source files', ->
