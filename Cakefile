@@ -5,11 +5,16 @@ appname = 'hbr'
 
 files = [
   'app'
+  'stores/game'
   'views/players'
   'views/roller'
   'views/word-count'
+  'views/sentence'
   'views/story'
   'views/word'
+  'views/blank-word'
+  'views/editable-word'
+  'views/free-word'
   'views/main'
 ]
 

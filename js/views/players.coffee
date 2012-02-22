@@ -11,7 +11,7 @@ HBR.Players = Ext.extend(Ext.Panel,
     for i in [1..Math.ceil(2 + 3 * Math.random())]
       items.push(new Ext.Panel(
         flex: 1
-        html: "Player #{i}"
+        html: "Player #{i}<br>0 coins"
       ))
     HBR.Players.superclass.constructor.call(@, cfg)
 )

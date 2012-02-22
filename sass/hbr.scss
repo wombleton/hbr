@@ -20,3 +20,19 @@
   text-align: center;
   padding: 1em;
 }
+
+.sentence {
+  .free-word, .editable-word {
+    display: inline-block;
+  }
+}
+.roller {
+  .x-toolbar {
+    height: 80px;
+    .x-layout-box-inner {
+      .x-button {
+        font-size: 2em;
+      }
+    }
+  }
+}

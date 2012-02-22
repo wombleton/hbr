@@ -3,25 +3,28 @@ HBR.Main = Ext.extend(Ext.Panel,
   constructor: (cfg = {}) ->
     @andCount = new HBR.WordCount(
       dock: 'right'
+      layout: 'vbox'
       listeners:
         wordoverflow: ->
           @roller.disable()
         scope: @
-      type: 'AND'
+      type: 'but'
     )
     @butCount = new HBR.WordCount(
       dock: 'left'
+      layout: 'vbox'
       listeners:
         wordoverflow: ->
           @roller.disable()
         scope: @
-      type: 'BUT'
+      type: 'and'
     )
     @wordCount = new HBR.WordCount(
       dock: 'bottom'
+      layout: 'hbox'
+      type: 'Robot'
     )
     @roller = new HBR.Roller(
-      dock: 'bottom'
       listeners:
         diceroll: (type) ->
           if type is 'but'
@@ -37,16 +40,11 @@ HBR.Main = Ext.extend(Ext.Panel,
     )
     @story = new HBR.Story()
     Ext.applyIf(cfg,
-      dockedItems: [
-        @andCount
-        @butCount
-        @wordCount
-        @roller
-        @players
-      ]
       fullscreen: true
-      items: @story
-      layout: 'auto'
+      items: @roller
+      layout: 'card'
     )
     HBR.Main.superclass.constructor.call(@, cfg)
 )
+
+Ext.reg('main', HBR.Main)

@@ -3,13 +3,74 @@ Ext.ns('HBR')
 HBR.Roller = Ext.extend(Ext.Panel,
   constructor: (cfg = {}) ->
     Ext.applyIf(cfg,
-      html: """
-        <ul class="dice">
-          <li data-count="1">1</li>
-          <li data-count="2">2</li>
-          <li data-count="3">3</li>
-        </ul>
-      """
+      cls: 'roller'
+      dockedItems: [
+        {
+          dock: 'top'
+          items: [
+            {
+              flex: 1
+              html: 'buts'
+            }
+            {
+              flex: 1
+              html: 'words'
+            }
+            {
+              flex: 1
+              html: 'ands'
+            }
+          ]
+          layout: 'hbox'
+
+        }
+        {
+          dock: 'bottom'
+          items: new Ext.Button(
+            text: 'Done'
+            ui: 'confirm'
+          )
+        }
+      ]
+      items: [
+        {
+          items: [
+            {
+              xtype: 'spacer'
+            }
+            {
+              handler: ->
+                @roll(1)
+              scope: @
+              text: '1'
+              ui: 'round'
+            }
+            {
+              handler: ->
+                @roll(2)
+              scope: @
+              text: '2'
+              ui: 'round'
+            }
+            {
+              handler: ->
+                @roll(3)
+              scope: @
+              text: '3'
+              ui: 'round'
+            }
+            {
+              xtype: 'spacer'
+            }
+          ]
+          layout:
+            pack: 'center'
+          ui: 'light'
+          xtype: 'toolbar'
+        }
+      ]
+      store: Ext.StoreMgr.get('game')
+      title: 'Roll'
     )
     HBR.Roller.superclass.constructor.call(@, cfg)
     @on('render', ->
@@ -23,11 +84,15 @@ HBR.Roller = Ext.extend(Ext.Panel,
   rollDie: ->
     roll = Math.random()
     if roll < (1 / 3)
-      @fireEvent('diceroll', 'but')
+      @addDie('but')
     else if (1 / 3) < roll < (2 / 3)
-      @fireEvent('diceroll', 'word')
+      @addDie('word')
     else
-      @fireEvent('diceroll', 'and')
+      @addDie('and')
+  addDie: (type) ->
+    wordCount = @up('.main').store.get('type', type)
+    debugger
+  getWordCountStore: ->
   roll: (dice) ->
     for i in [1..Number(dice)]
       @rollDie()

@@ -4,15 +4,16 @@ HBR.WordCount = Ext.extend(Ext.Panel,
   constructor: (cfg = {}) ->
     Ext.applyIf(cfg,
       cls: 'word-count'
-      type: 'Words'
+      count: 0
+      items: new HBR.FreeWord(cfg.type)
     )
     HBR.WordCount.superclass.constructor.call(@, cfg)
-    @setCount(0)
   addWord: ->
     @setCount(++@count)
+    @add(new HBR.BlankWord())
+    @doLayout()
   setCount: (@count) ->
-    @update("#{@count} #{@type}")
-    if @type isnt 'Word' and @count >= 4
+    if @type isnt 'Robot' and @count >= 4
       @fireEvent('wordoverflow')
 
 )
