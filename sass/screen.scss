@@ -1,0 +1,23 @@
+@import "compass/reset";
+
+#players {
+  display: table;
+  .player {
+    display: table-cell;
+    padding: 5px 5px 5px 29px;
+    &.player_1 {
+      background: url('/images/person_yellow.svg');
+    }
+  }
+}
+
+.ins {
+  text-decoration: underline;
+}
+.del {
+  color: red;
+  text-decoration: line-through;
+}
+.ins, .del {
+  padding: 1px 0 2px;
+}

@@ -1,0 +1,22 @@
+#game(data-role="page")
+  div(data-role="header", data-position="fixed")
+    h1 Happy Birthday, Robot!
+  div#story(data-role="content")
+    div
+      p Happy Birthday, Robot!
+    .editor(contenteditable="true")
+      p Start writing here!
+    button Done
+  #players(data-role="footer", data-theme="d", data-position="fixed")
+#start(data-role="page")
+  div(data-role="header")
+    h1 New Game
+  div(data-role="content")
+    button(data-count="3") 3 Players
+    button(data-count="4") 4 Players
+    button(data-count="5") 5 Players
+#roller(data-rel="popup")
+  button(data-dice="1") 1d6
+  button(data-dice="2") 2d6
+  button(data-dice="3") 3d6
+  a(href="#game", data-role="button") Done
