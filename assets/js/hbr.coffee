@@ -81,18 +81,52 @@ Game =
       else
         Game.Story.startSentence()
   Story:
+    isValid: ($el) ->
+      text = $el.text()
+      if /\n/.test(text)
+        false
+      else
+        words = text.replace(/[^\w ]/g, '').split(' ')
+        savedWords = $el.data('saved-words')
+        _.reduce(savedWords, (memo, word) ->
+          index = _.indexOf(words, word)
+          memo &&= index >= 0
+          words = words.slice(index + 1)
+          memo
+        , true)
+    listen: ->
+      $('.editor').live('mousedown keydown', ->
+        $el = $(@)
+        $el.data('saved-words', ['Start', 'writing'])
+        valid = Game.Story.isValid($el)
+        if valid
+          $el.data('last-valid', $el.html())
+          selection = window.getSelection()
+          if selection and selection.rangeCount > 0
+            { startOffset, endOffset } = selection.getRangeAt(0)
+            $el.data('last-valid-range', [ startOffset, endOffset ])
+      )
+      $('.editor').live('mouseup keyup', ->
+        $el = $(@)
+        valid = Game.Story.isValid($el)
+        unless valid
+          $el.html($el.data('last-valid'))
+          [ startOffset, endOffset ] = $el.data('last-valid-range')
+          selection = window.getSelection()
+          if selection and selection.rangeCount > 0
+            range = selection.getRangeAt(0)
+            range.setStart(@, 2)
+            range.setEnd(@, 3)
+        true
+      )
     startSentence: ->
       Game.Roller.hide()
       $('#story').show()
-jQuery(document).ready(($) ->
+jQuery(document).ready(($) =>
   $('#start button').live('tap', Game.Start.startGame)
   $('#roller button, #roller a').live('tap', Game.Roller.onTap)
   $('#story button').live('tap', Game.Roller.show)
-  $('.editor').live('keydown keyup mousedown mouseup', ->
-    debugger
-    console.log(arguments)
-    console.log('editor event')
-  )
+  @Game.Story.listen()
 )
 
 @Game = Game
