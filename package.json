@@ -1,0 +1,17 @@
+{
+  "name": "hbr",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "connect": "latest",
+    "connect-assets": "latest",
+    "express": "latest",
+    "jade": "latest",
+    "underscore": "= 1.3.1",
+    "underscore.string": ">= 2.0.0"
+  },
+  "engines": {
+    "node": "0.6.x",
+    "npm": ">= 1.0.0"
+  }
+}

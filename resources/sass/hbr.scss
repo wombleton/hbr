@@ -1,0 +1,9 @@
+@import "apple.scss";
+
+.player {
+  background: pink;
+  padding: 10px;
+  &.active {
+    background: green;
+  }
+}
