@@ -8,14 +8,25 @@ Ext.define('HBR.view.Main',
     layout: 'fit'
     items: [
       {
+        docked: 'top'
+        items: [
+          {
+            align: 'right'
+            text: 'omg'
+          }
+        ]
+        ui: 'dark'
+        xtype: 'titlebar'
+      }
+      {
         flex: 2
         xtype: 'story'
       }
       {
         count: 5
-        flex: 1
         xtype: 'players'
         docked: 'right'
+        width: 200
       }
     ]
 )

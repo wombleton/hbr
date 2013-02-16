@@ -1,3 +1,4 @@
+#= require ../models/player
 #= require player
 
 Ext.define('HBR.view.Players',
@@ -9,11 +10,15 @@ Ext.define('HBR.view.Players',
   initialize: ->
     @callParent(arguments)
     _.times(@getCount(), (num) ->
-      @add(
-        active: num is 0
-        name: "foos #{num + 1}"
-        xtype: 'player'
-      )
+      @addPlayer(Ext.create('HBR.model.Player',
+        name: "Player #{num + 1}"
+      ))
     , @)
+  addPlayer: (record) ->
+    @add(
+      active: false
+      record: record
+      xtype: 'player'
+    )
   xtype: 'players'
 )
