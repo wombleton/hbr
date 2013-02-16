@@ -1,0 +1,104 @@
+@import "elements.less";
+@import "bootstrap/bootstrap.less";
+
+@night: #eee;
+@borderline: #eeffee;
+@day: #ccffcc;
+
+body {
+  margin: 50px 0;
+}
+
+#controls {
+  .nav {
+    font-size: 24px;
+    line-height: 1.2;
+    margin-left: 20px;
+    .rounded(7px);
+  }
+  h1, .today {
+    text-align: center;
+  }
+}
+
+#dashboard {
+  .ok {
+    color: lighten(@successText, 10%);
+  }
+  .error {
+    color: lighten(@warningText, 10%);
+  }
+}
+
+
+.clinic {
+  h3 {
+    margin-top: 1em;
+  }
+}
+
+.timeslots {
+  display: table;
+  .drop-shadow(2px, 2px, 5px);
+  .gradient(@night, darken(@night, 15%), @night);
+  .bordered(@btnBorder, @btnBorder, darken(@btnBorder, 10%), @btnBorder);
+  .rounded(4px);
+  .timeslot {
+    text-shadow: rgba(0, 0, 0, 0.6) 1px 1px 2px;
+    font-weight: bold;
+    display: table-cell;
+    padding: 12px 0;
+    font-size: 14px;
+    line-height: 1.6;
+    width: 39px;
+    text-align: center;
+    cursor: pointer;
+    &:hover, &.active {
+      .scale(1.1);
+      outline: 1px solid @btnBorder;
+    }
+    &.borderline {
+      .gradient(@borderline, darken(@borderline, 15%), @borderline);
+    }
+    &.day {
+      .gradient(@day, darken(@day, 15%), @day);
+    }
+    &.night {
+      .gradient(@night, darken(@night, 15%), @night);
+    }
+  }
+}
+
+.appointments {
+  padding: 10px 0;
+  h3, h4, p {
+    padding: 0 5px;
+  }
+  .time {
+    padding: 3px 8px;
+    color: darken(@infoText, 5%);
+    background-color: darken(@infoBackground, 5%);
+  }
+  .reason {
+    padding: 3px 8px;
+    .border-radius(2px, 2px, 0, 0);
+    color: @infoText;
+    background-color: @infoBackground;
+    margin-bottom: 5px;
+  }
+}
+
+.messages {
+    ul {
+        list-style: none;
+        .message {
+            margin: 0 0 16px 0;
+            .data {
+                overflow: scroll;
+                white-space: pre;
+                font-family: @monoFontFamily;
+                font-size: 0.7em;
+            }
+        }
+    }
+}
