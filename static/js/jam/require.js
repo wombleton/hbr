@@ -2068,6 +2068,10 @@ var jam = {
             "main": "lib/core/amd/backbone.marionette.js"
         },
         {
+            "name": "Backbone.ModelBinder",
+            "location": "/js/jam/Backbone.ModelBinder"
+        },
+        {
             "name": "Backbone.Wreqr",
             "location": "/js/jam/Backbone.Wreqr",
             "main": "lib/amd/backbone.wreqr.js"
@@ -2155,6 +2159,10 @@ if (typeof require !== "undefined" && require.config) {
             "main": "lib/core/amd/backbone.marionette.js"
         },
         {
+            "name": "Backbone.ModelBinder",
+            "location": "/js/jam/Backbone.ModelBinder"
+        },
+        {
             "name": "Backbone.Wreqr",
             "location": "/js/jam/Backbone.Wreqr",
             "main": "lib/amd/backbone.wreqr.js"
@@ -2239,6 +2247,10 @@ else {
             "name": "Backbone.Marionette",
             "location": "/js/jam/Backbone.Marionette",
             "main": "lib/core/amd/backbone.marionette.js"
+        },
+        {
+            "name": "Backbone.ModelBinder",
+            "location": "/js/jam/Backbone.ModelBinder"
         },
         {
             "name": "Backbone.Wreqr",

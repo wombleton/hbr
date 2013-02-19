@@ -31,7 +31,8 @@
       "underscore": "1.x",
       "underscore.string": "2.x",
       "backbone-localStorage": "0.x",
-      "Backbone.Marionette": "1.x"
+      "Backbone.Marionette": "1.x",
+      "Backbone.ModelBinder": "0.x"
     }
   }
 }
