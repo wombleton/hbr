@@ -4,20 +4,37 @@ define([
    '/js/views/start-player.js',
    'text!/js/templates/start.html'
 ], function(Marionette, HBR, StartPlayerView, html) {
-    return Marionette.CollectionView.extend({
+    return Marionette.CompositeView.extend({
         className: 'start container-fluid',
         events: {
-            'click [data-action=add-player]': 'addPlayer'
+            'click [data-action=add]': function() {
+                this.collection.create({});
+            }
         },
-        addPlayer: function() {
-            this.collection.create({});
+        collectionEvents: {
+            'add': function() {
+                if (this.collection.length >=5) {
+                    this.ui.add.hide();
+                }
+            },
+            'change': function() {
+                var valid = this.collection.all(function(model) {
+                    return model.validate();
+                });
+
+                if (valid) {
+                    this.ui.next.removeAttr('disabled');
+                } else {
+                    this.ui.next.attr('disabled', 'disabled');
+                }
+            }
+        },
+        ui: {
+            add: '[data-action=add]',
+            next: '[data-action=next]'
         },
         itemView: StartPlayerView,
-        template: _.template(html),
-        onRender: function() {
-            if (this.collection.length < 5) {
-                this.$el.append(this.template());
-            }
-        }
+        itemViewContainer: '.players',
+        template: _.template(html)
     });
 });
