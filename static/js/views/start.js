@@ -5,18 +5,20 @@ define([
    'text!/js/templates/start.html'
 ], function(Marionette, HBR, StartPlayerView, html) {
     return Marionette.CompositeView.extend({
-        className: 'start container-fluid',
+        className: 'start container-fluid flex-container flex-vertical full-height',
         events: {
-            'click [data-action=add]': function() {
-                this.collection.create({});
+            'click [data-count]': function(e) {
+                var count = Number($(e.currentTarget).attr('data-count'));
+
+                while (count > this.collection.length) {
+                    this.collection.create({});
+                }
+                while (count < this.collection.length) {
+                    this.collection.pop();
+                }
             }
         },
         collectionEvents: {
-            'add': function() {
-                if (this.collection.length >=5) {
-                    this.ui.add.hide();
-                }
-            },
             'change': function() {
                 var valid = this.collection.all(function(model) {
                     return model.validate();

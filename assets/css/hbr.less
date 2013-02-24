@@ -1,104 +1,74 @@
 @import "elements.less";
 @import "bootstrap/bootstrap.less";
 
-@night: #eee;
-@borderline: #eeffee;
-@day: #ccffcc;
+html, body {
+    height: 100%;
+}
 
 body {
-  margin: 50px 0;
+    padding: 10px 0;
+    box-sizing: border-box;
 }
 
-#controls {
-  .nav {
-    font-size: 24px;
-    line-height: 1.2;
-    margin-left: 20px;
-    .rounded(7px);
-  }
-  h1, .today {
-    text-align: center;
-  }
+body > .container-fluid {
+    box-sizing: border-box;
 }
 
-#dashboard {
-  .ok {
-    color: lighten(@successText, 10%);
-  }
-  .error {
-    color: lighten(@warningText, 10%);
-  }
+.flex-container {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -webkit-box-pack: start;
+    -moz-box-pack: start;
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -webkit-align-content: center;
+    -ms-flex-line-pack: center;
+    align-content: center;
+    -webkit-box-align: stretch;
+    -moz-box-align: stretch;
+    -webkit-align-items: stretch;
+    -ms-flex-align: stretch;
+    align-items: stretch;
 }
 
-
-.clinic {
-  h3 {
-    margin-top: 1em;
-  }
+.flex-vertical {
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
 }
 
-.timeslots {
-  display: table;
-  .drop-shadow(2px, 2px, 5px);
-  .gradient(@night, darken(@night, 15%), @night);
-  .bordered(@btnBorder, @btnBorder, darken(@btnBorder, 10%), @btnBorder);
-  .rounded(4px);
-  .timeslot {
-    text-shadow: rgba(0, 0, 0, 0.6) 1px 1px 2px;
-    font-weight: bold;
-    display: table-cell;
-    padding: 12px 0;
-    font-size: 14px;
-    line-height: 1.6;
-    width: 39px;
-    text-align: center;
-    cursor: pointer;
-    &:hover, &.active {
-      .scale(1.1);
-      outline: 1px solid @btnBorder;
-    }
-    &.borderline {
-      .gradient(@borderline, darken(@borderline, 15%), @borderline);
-    }
-    &.day {
-      .gradient(@day, darken(@day, 15%), @day);
-    }
-    &.night {
-      .gradient(@night, darken(@night, 15%), @night);
-    }
-  }
+.full-height {
+    height: 100%;
 }
 
-.appointments {
-  padding: 10px 0;
-  h3, h4, p {
-    padding: 0 5px;
-  }
-  .time {
-    padding: 3px 8px;
-    color: darken(@infoText, 5%);
-    background-color: darken(@infoBackground, 5%);
-  }
-  .reason {
-    padding: 3px 8px;
-    .border-radius(2px, 2px, 0, 0);
-    color: @infoText;
-    background-color: @infoBackground;
-    margin-bottom: 5px;
-  }
+.flex-justify {
+    box-pack: justify;
 }
 
-.messages {
-    ul {
-        list-style: none;
-        .message {
-            margin: 0 0 16px 0;
-            .data {
-                overflow: scroll;
-                white-space: pre;
-                font-family: @monoFontFamily;
-                font-size: 0.7em;
-            }
-        }
-    }
+.flex-grow {
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -webkit-flex: 1 1 auto;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+}
+
+.flex-space {
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -webkit-flex: 1 1 0;
+    -ms-flex: 1 1 0;
+    flex: 1 1 0;
 }
