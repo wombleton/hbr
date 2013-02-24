@@ -8,12 +8,9 @@ define([
         var view,
             players;
 
-        players = new PlayerList();
-        players.create({});
-        players.create({});
-        players.create({});
+        HBR.players = new PlayerList();
         view = new StartView({
-            collection: players
+            collection: HBR.players
         });
 
         router.route('', 'start', function() {

@@ -17,5 +17,7 @@ define([
 
     HBR.start();
 
+    this.HBR = HBR;
+
     return HBR;
 });

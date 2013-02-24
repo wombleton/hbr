@@ -10,18 +10,39 @@ define([
             'click [data-count]': function(e) {
                 var count = Number($(e.currentTarget).attr('data-count'));
 
-                while (count > this.collection.length) {
-                    this.collection.create({});
-                }
-                while (count < this.collection.length) {
-                    this.collection.pop();
-                }
+                this.adjustCount(count);
+
+            },
+            'click [data-action=next]': function() {
+                debugger;
+                this.collection.each(function(model) {
+                    model.save();
+                });
+            }
+        },
+        initialize: function() {
+            this.collection.fetch({
+                success: _.bind(function(coll) {
+                    if (coll.length < 3) {
+                        this.adjustCount(3);
+                    } else if (coll.length > 5) {
+                        this.adjustCount(5);
+                    }
+                }, this)
+            });
+        },
+        adjustCount: function(count) {
+            while (count > this.collection.length) {
+                this.collection.create({});
+            }
+            while (count < this.collection.length) {
+                this.collection.pop().destroy();
             }
         },
         collectionEvents: {
             'change': function() {
                 var valid = this.collection.all(function(model) {
-                    return model.validate();
+                    return !model.validate();
                 });
 
                 if (valid) {
