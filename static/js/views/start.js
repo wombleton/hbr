@@ -11,13 +11,13 @@ define([
                 var count = Number($(e.currentTarget).attr('data-count'));
 
                 this.adjustCount(count);
-
             },
             'click [data-action=next]': function() {
-                debugger;
                 this.collection.each(function(model) {
                     model.save();
                 });
+                HBR.Play.nextPlayers();
+                HBR.router.navigate('roll', true);
             }
         },
         initialize: function() {
@@ -39,18 +39,26 @@ define([
                 this.collection.pop().destroy();
             }
         },
-        collectionEvents: {
-            'change': function() {
-                var valid = this.collection.all(function(model) {
-                    return !model.validate();
-                });
+        onRender: function() {
+            this.onChange();
 
-                if (valid) {
-                    this.ui.next.removeAttr('disabled');
-                } else {
-                    this.ui.next.attr('disabled', 'disabled');
-                }
+            this.bindUIElements();
+
+            return this;
+        },
+        onChange: function() {
+            var valid = this.collection.all(function(model) {
+                return !model.validate();
+            });
+
+            if (valid) {
+                this.ui.next.removeAttr('disabled');
+            } else {
+                this.ui.next.attr('disabled', 'disabled');
             }
+        },
+        collectionEvents: {
+            'change': 'onChange'
         },
         ui: {
             add: '[data-action=add]',
