@@ -5,7 +5,8 @@ define([
 
     HBR.addInitializer(function() {
         require([
-            '/js/modules/start.js'
+            '/js/modules/start.js',
+            '/js/modules/play.js'
         ], function() {
             Backbone.history.start();
         });
