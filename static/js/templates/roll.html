@@ -1,0 +1,23 @@
+<div class="flex-container flex-space">
+    <div class="flex-space" data-type="and">
+        <label>And</label>
+        <h3><%-obj.andPlayer.name%></h3>
+        <%-obj.andPlayer.words%>
+    </div>
+    <div class="flex-space" data-type="word">
+        <label>Word</label>
+        <h3><%-obj.wordPlayer.name%></h3>
+        <%-obj.wordPlayer.words%>
+    </div>
+    <div class="flex-space" data-type="but">
+        <label>But</label>
+        <h3><%-obj.butPlayer.name%></h3>
+        <%-obj.butPlayer.words%>
+    </div>
+</div>
+<div class="row-fluid flex-space flex-container">
+    <button class="btn btn-block btn-success" data-action="roll">Roll</button>
+</div>
+<div class="row-fluid flex-space flex-container">
+    <button class="btn btn-block btn-primary" data-action="next" disabled="disabled">Done</button>
+</div>
