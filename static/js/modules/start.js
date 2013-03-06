@@ -9,12 +9,11 @@ define([
             players;
 
         HBR.players = new PlayerList();
-        view = new StartView({
-            collection: HBR.players
-        });
 
         router.route('', 'start', function() {
-            HBR.mainRegion.show(view);
+            HBR.mainRegion.show(new StartView({
+                collection: HBR.players
+            }));
         });
     });
 });
