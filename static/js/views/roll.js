@@ -9,9 +9,11 @@ define([
             'click [data-action=roll]': function() {
                 _.times(3, this.roll, this);
 
-                this.validate();
+                this.doRender();
             },
             'click [data-action=next]': function() {
+                HBR.players.saveAll();
+
                 HBR.router.navigate('words', true);
             }
         },
@@ -29,9 +31,9 @@ define([
             player.set('words', player.get('words') + 1);
         },
         validate: function() {
-            this.render();
-
-            this.ui.next.enable();
+            this.ui.next.enable(_.any([this.andPlayer, this.wordPlayer, this.butPlayer], function(player) {
+                return player.get('words') > 0;
+            }));
 
             this.ui.roll.enable(this.andPlayer.get('words') < 4 && this.butPlayer.get('words') < 4);
         },
@@ -52,6 +54,8 @@ define([
                 }));
 
                 this.bindUIElements();
+
+                this.validate();
             } else {
                 HBR.router.navigate('', true);
             }

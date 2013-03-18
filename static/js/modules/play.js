@@ -21,20 +21,6 @@ define([
             }
         };
 
-        this.isClean = function() {
-            _.all(this.counts, function(count) {
-                return count === 0;
-            });
-        };
-
-        this.isDone = function() {
-            return this.counts[0] >= 4 || this.counts[2] >= 4;
-        }
-
-        this.reset = function() {
-            this.counts = [0, 0, 0];
-        }
-
         router.route('roll', 'roll', function() {
             HBR.mainRegion.show(new RollView({
                 collection: HBR.players
@@ -42,9 +28,23 @@ define([
         });
 
         router.route('words', 'words', function() {
-            HBR.mainRegion.show(new WordsView({
-                collection: HBR.players
-            }));
+            HBR.sentences.getActive(function(sentence) {
+                HBR.players.onceLoaded(function() {
+                    if (!sentence.get('player')) {
+                        sentence.set({
+                            player: 'wordPlayer',
+                            wordPlayer: HBR.players.getByType('word'),
+                            andPlayer: HBR.players.getByType('and'),
+                            butPlayer: HBR.players.getByType('but'),
+                            words: []
+                        });
+                        sentence.save();
+                    }
+                    HBR.mainRegion.show(new WordsView({
+                        model: sentence
+                    }));
+                });
+            });
         });
     });
 });

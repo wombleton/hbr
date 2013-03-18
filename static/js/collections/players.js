@@ -45,6 +45,20 @@ define([
             model.save();
 
             return model;
+        },
+        saveAll: function() {
+            this.each(function(model) {
+                model.save();
+            });
+        },
+        onceLoaded: function(callback) {
+            if (this.length) {
+                callback();
+            } else {
+                this.fetch({
+                    success: callback
+                });
+            }
         }
     });
 });
