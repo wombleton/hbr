@@ -4,69 +4,45 @@ define([
    'text!/js/templates/roll.html'
 ], function(Marionette, HBR, html) {
     return Marionette.View.extend({
-        className: 'start container-fluid flex-container flex-vertical full-height',
+        className: 'roll container-fluid drop-shadow',
         events: {
             'click [data-action=roll]': function() {
                 _.times(3, this.roll, this);
 
-                this.doRender();
+                this.render();
             },
             'click [data-action=next]': function() {
-                HBR.players.saveAll();
-
-                HBR.router.navigate('words', true);
+                HBR.diffs.create({
+                    action: 'set rolls',
+                    data: _.pluck(HBR.state.playing, 'words')
+                });
+                HBR.diffs.create({
+                    action: 'nav',
+                    data: 'words'
+                });
             }
         },
-        initialize: function() {
-            this.on('app:next-turn', function() {
-                _.extend(this, HBR.Play.nextPlayers());
-            });
-        },
         roll: function() {
-            var keys = ['wordPlayer', 'andPlayer', 'butPlayer'],
-                player;
-
-            player = this[keys[_.random(0, 2)]];
-
-            player.set('words', player.get('words') + 1);
-        },
-        validate: function() {
-            this.ui.next.enable(_.any([this.andPlayer, this.wordPlayer, this.butPlayer], function(player) {
-                return player.get('words') > 0;
-            }));
-
-            this.ui.roll.enable(this.andPlayer.get('words') < 4 && this.butPlayer.get('words') < 4);
+            HBR.state.playing[_.random(0, 2)].words++;
         },
         ui: {
             next: '[data-action=next]',
             roll: '[data-action=roll]'
         },
-        doRender: function() {
-            this.wordPlayer = HBR.players.getByType('word');
-            this.andPlayer = HBR.players.getByType('and');
-            this.butPlayer = HBR.players.getByType('but');
+        render: function() {
+            var words;
 
-            if (this.wordPlayer) {
-                this.$el.html(this.template({
-                    wordPlayer: this.wordPlayer.toJSON(),
-                    andPlayer: this.andPlayer.toJSON(),
-                    butPlayer: this.butPlayer.toJSON()
-                }));
+            if (HBR.state.playing) {
+                this.$el.html(this.template(HBR.state));
 
                 this.bindUIElements();
 
-                this.validate();
-            } else {
-                HBR.router.navigate('', true);
-            }
-        },
-        render: function() {
-            if (HBR.players.length) {
-                this.doRender();
-            } else {
-                HBR.players.fetch({
-                    success: _.bind(this.doRender, this)
-                });
+                words = _.reduce(HBR.state.playing, function(memo, player) {
+                    return memo + player.words;
+                }, 0);
+
+                this.ui.roll.enable(HBR.state.playing[0].words < 4 && HBR.state.playing[2].words < 4);
+                this.ui.next.enable(words > 0);
             }
 
             return this;

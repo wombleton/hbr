@@ -5,7 +5,7 @@ define([
    'text!/js/templates/start.html'
 ], function(Marionette, HBR, StartPlayerView, html) {
     return Marionette.CompositeView.extend({
-        className: 'start container-fluid flex-container flex-vertical full-height',
+        className: 'start container-fluid drop-shadow',
         events: {
             'click [data-count]': function(e) {
                 var count = Number($(e.currentTarget).attr('data-count'));
@@ -13,11 +13,20 @@ define([
                 this.adjustCount(count);
             },
             'click [data-action=next]': function() {
-                this.collection.each(function(model) {
-                    model.save();
+                this.collection.each(function(model, i) {
+                    HBR.diffs.create({
+                        action: 'add player',
+                        data: {
+                            coins: 0,
+                            name: model.get('name'),
+                            words: 0
+                        }
+                    });
                 });
-                HBR.Play.nextPlayers();
-                HBR.router.navigate('roll', true);
+                HBR.diffs.create({
+                    action: 'nav',
+                    data: 'roll'
+                });
             }
         },
         initialize: function() {
@@ -38,6 +47,7 @@ define([
             while (count < this.collection.length) {
                 this.collection.pop().destroy();
             }
+            this.onChange();
         },
         onRender: function() {
             this.onChange();
@@ -50,6 +60,10 @@ define([
             var valid = this.collection.all(function(model) {
                 return !model.validate();
             });
+
+            if (_.isString(this.ui.next)) {
+                return;
+            }
 
             if (valid) {
                 this.ui.next.removeAttr('disabled');

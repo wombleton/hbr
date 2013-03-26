@@ -5,7 +5,7 @@ define([
    'text!/js/templates/start-player.html'
 ], function(Marionette, ModelBinder, _, html) {
     return Marionette.ItemView.extend({
-        className: 'row-fluid flex-space',
+        className: 'row-fluid',
         initialize: function() {
             this.binder = new ModelBinder();
         },

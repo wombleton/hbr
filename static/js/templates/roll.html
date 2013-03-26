@@ -1,18 +1,18 @@
-<div class="flex-container flex-space">
-    <div class="flex-space" data-type="and">
-        <label>And</label>
-        <h3><%-obj.andPlayer.name%></h3>
-        <%-obj.andPlayer.words%>
+<div class="btn-row row-fluid">
+    <div class="btn-el" data-type="and">
+        <label class="label">And</label>
+        <h3><%- obj.playing[0].name %></h3>
+        <%- obj.playing[0].words %>
     </div>
-    <div class="flex-space" data-type="word">
-        <label>Word</label>
-        <h3><%-obj.wordPlayer.name%></h3>
-        <%-obj.wordPlayer.words%>
+    <div class="btn-el" data-type="word">
+        <label class="label">Word</label>
+        <h3><%- obj.playing[1].name %></h3>
+        <%- obj.playing[1].words %>
     </div>
-    <div class="flex-space" data-type="but">
-        <label>But</label>
-        <h3><%-obj.butPlayer.name%></h3>
-        <%-obj.butPlayer.words%>
+    <div class="btn-el" data-type="but">
+        <label class="label">But</label>
+        <h3><%- obj.playing[2].name %></h3>
+        <%- obj.playing[2].words %>
     </div>
 </div>
 <div class="row-fluid flex-space flex-container">

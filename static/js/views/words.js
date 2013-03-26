@@ -36,35 +36,10 @@ define([
 
             }
         },
-        wordsLeft: function() {
-            var count = this.model.wordsLeft();
-
-            this.$('[type=text]').each(_.bind(function(i, el) {
-                var v = $(el).val().trim().toLowerCase();
-
-                if (v && v !== this.model.getFreeWord()) {
-                    count--
-                }
-            }, this));
-
-            return count;
-        },
-        initialize: function() {
-            this.count = this.model.wordsLeft();
-        },
-        validate: function() {
-            this.render();
-        },
         render: function() {
-            this.$el.html(this.template({
-                content: this.model.get('content')
-            }));
+            this.$el.html(this.template(HBR.state));
 
             this.bindUIElements();
-
-            this.updateCount();
-
-            //this.binder.bindCustomTriggers(this.model, this.el, ['input']);
 
             return this;
         },
