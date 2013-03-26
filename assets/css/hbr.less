@@ -1,74 +1,57 @@
 @import "elements.less";
 @import "bootstrap/bootstrap.less";
 
-html, body {
-    height: 100%;
-}
-
 body {
-    padding: 10px 0;
-    box-sizing: border-box;
+    padding: 20px 0 0;
 }
 
-body > .container-fluid {
-    box-sizing: border-box;
+.btn-row {
+    display: table;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    border-spacing: 5px;
+
+    .btn-el {
+        width: 33%;
+        padding: 20px 10px;
+        vertical-align: top;
+        display: table-cell;
+    }
+    btn-el:first-child {
+        margin-left: 0;
+    }
 }
 
-.flex-container {
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
-
-    -webkit-flex-wrap: nowrap;
-    -ms-flex-wrap: nowrap;
-    flex-wrap: nowrap;
-    -webkit-box-pack: start;
-    -moz-box-pack: start;
-    -webkit-justify-content: flex-start;
-    -ms-flex-pack: start;
-    justify-content: flex-start;
-    -webkit-align-content: center;
-    -ms-flex-line-pack: center;
-    align-content: center;
-    -webkit-box-align: stretch;
-    -moz-box-align: stretch;
-    -webkit-align-items: stretch;
-    -ms-flex-align: stretch;
-    align-items: stretch;
+#main > .drop-shadow {
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
-.flex-vertical {
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
+.drop-shadow {
+    background-color: white;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    position: relative;
+    padding-bottom: 10px;
 }
 
-.full-height {
-    height: 100%;
+.drop-shadow:before, .drop-shadow:after {
+    display: block;
+    content: "";
+    position: absolute;
+    z-index: -2;
+    bottom: 15px;
+    left: 15px;
+    width: 50%;
+    height: 100px;
+    max-width: 300px;
+    .box-shadow(0 15px 10px rgba(0, 0, 0, 0.7));
+    .rotate(-3deg);
 }
 
-.flex-justify {
-    box-pack: justify;
+.drop-shadow:after {
+    right: 15px;
+    left: auto;
+    .rotate(3deg);
 }
 
-.flex-grow {
-    -webkit-box-flex: 1;
-    -moz-box-flex: 1;
-    -webkit-flex: 1 1 auto;
-    -ms-flex: 1 1 auto;
-    flex: 1 1 auto;
-}
-
-.flex-space {
-    -webkit-box-flex: 1;
-    -moz-box-flex: 1;
-    -webkit-flex: 1 1 0;
-    -ms-flex: 1 1 0;
-    flex: 1 1 0;
-}
